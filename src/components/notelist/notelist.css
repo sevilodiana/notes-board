@@ -1,0 +1,53 @@
+.notes__container {
+    display: flex;
+    width: 99%;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.notes {
+    display: flex;
+    width: 100%;
+    gap: .5rem;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-left: 30px;
+    padding: 32px;
+    padding-right: 20px;
+    border-radius: 1.2rem;
+    background-color: var(--container-color);
+}
+
+@media (max-width: 1883px) {
+   .notes__container {
+    width: 99%;
+   }
+   
+    .notes {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 1522px) {
+    .notes__container {
+     width: 99%;
+    }
+    
+     .notes {
+         width: 100%;
+     }
+ 
+ }
+
+ @media (max-width: 1424px) {
+    .notes__container {
+     width: 99%;
+    }
+    
+     .notes {
+         width: 95%;
+     }
+ 
+ }

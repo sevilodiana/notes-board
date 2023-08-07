@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC, FormEvent, useEffect, useState } from "react";
+import Header from "./components/header/Header";
+import Button from "./components/button/Button";
+import NoteList from "./components/notelist/NoteList";
+import { Note } from "./model";
+interface AppProps {}
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App: FC<AppProps> = ({}) => {
+  const [note, setNote] = useState<string>("asd");
+  const [notes, setNotes] = useState<Note[]>(
+    JSON.parse(localStorage.getItem("notes")!) || []
   );
-}
+
+
+  const handleAdd = (e: FormEvent) => {
+    e.preventDefault();
+
+    setNotes([
+      { id: Date.now(), title: "", text: "", isDone: false },
+      ...notes,
+    ]);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
+
+  return (
+      <>
+        <Header />
+        {/* <InputField todo={todo} setTodo={setTodo} /> */}
+        <Button note={note} setNote={setNote} handleAdd={(e) => handleAdd(e)} />
+        <NoteList notes={notes} setNotes={setNotes} />
+      </>
+  );
+};
 
 export default App;
